@@ -14,8 +14,14 @@ def set_status_block(status_block:str):
     else:
         return "Status: Good"
 
+def get_effort(last_block) -> str:
+    try:
+        return ((str)(round(last_block['effort'], 2)))
+    except:
+        return ("-")
+
 def set_global_message(last_block) -> str:
     status_stats:str = set_status_block(last_block['status'])
-    luck_stats:str = "Luck: " + (str)(round(last_block['effort'], 2)) + "%"
+    luck_stats:str = "Luck: " + get_effort(last_block) + "%"
     global_stats:str = status_stats + '\n' + luck_stats + '\n' + shorten_link(last_block['infoLink'])
     return (global_stats)
